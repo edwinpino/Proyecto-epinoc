@@ -1,0 +1,3 @@
+{"schema":{"type":"struct","fields":[{"field":"invoice_id","type":"int32"},{"field":"customer_id","type":"string"},{"field":"amount","type":"double"}]},"payload":{"invoice_id":1004,"customer_id":"Enrique","amount":59.9}}
+{"schema":{"type":"struct","fields":[{"field":"invoice_id","type":"int32"},{"field":"customer_id","type":"string"},{"field":"amount","type":"double"}]},"payload":{"invoice_id":1005,"customer_id":"Xiomara","amount":120.0}}
+{"schema":{"type":"struct","fields":[{"field":"invoice_id","type":"int32"},{"field":"customer_id","type":"string"},{"field":"amount","type":"double"}]},"payload":{"invoice_id":1006,"customer_id":"Alejandra","amount":18.5}}
