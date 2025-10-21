@@ -22,11 +22,12 @@ while true; do
   # Generar datos aleatorios
   invoice_id=$((RANDOM % 10000 + 1))
   customer_id=$(shuf -e "Edwin" "Claudia" "Mariana" "Carlos" "Ana" "Luis" "Maria" "Pedro" "Sofia" -n1)
+  city_code=$(shuf -e "BOG" "MED" "CUC" "BUC" "SMA" "CAR" "CAL" "IBA" "MON" -n1)
   amount=$(awk -v min=10 -v max=200 'BEGIN{srand(); printf("%.2f", min+rand()*(max-min))}')
 
   # Armar mensaje JSON
   json_msg=$(cat <<EOF
-{"schema":{"type":"struct","fields":[{"field":"invoice_id","type":"int32"},{"field":"customer_id","type":"string"},{"field":"amount","type":"double"}]},"payload":{"invoice_id":${invoice_id},"customer_id":"${customer_id}","amount":${amount}}}
+{"schema":{"type":"struct","fields":[{"field":"invoice_id","type":"int32"},{"field":"customer_id","type":"string"},{"field":"amount","type":"double"},{"field":"city_code","type":"string"}]},"payload":{"invoice_id":${invoice_id},"customer_id":"${customer_id}","amount":${amount},"city_code":"${city_code}"}}
 EOF
 )
 
@@ -37,7 +38,7 @@ EOF
     continue
   }
 
-  echo "📤 (${COUNTER}) Enviado: invoice_id=${invoice_id}, customer_id=${customer_id}, amount=${amount}"
+  echo "📤 (${COUNTER}) Enviado: invoice_id=${invoice_id}, customer_id=${customer_id}, amount=${amount}, city_code=${city_code}"
   COUNTER=$((COUNTER + 1))
   sleep 2
 done

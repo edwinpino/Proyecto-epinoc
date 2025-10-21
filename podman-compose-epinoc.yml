@@ -215,3 +215,28 @@ services:
     entrypoint: ["/bin/sh", "/app/producer.sh"]
     networks:
       - default
+
+  spark:
+    image: apache/spark:3.5.0
+    container_name: spark
+    hostname: spark
+    user: root  # 👈 Añadido: ejecuta como root para tener permisos en /opt/spark
+    environment:
+      - IVY_HOME=/opt/spark/.ivy2
+    command: >
+      bash -c "
+      mkdir -p /opt/spark/.ivy2/cache &&
+      chmod -R 777 /opt/spark/.ivy2 &&
+      /opt/spark/bin/spark-submit
+      --master local[*]
+      --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,org.postgresql:postgresql:42.7.3
+      /spark/stream_invoices.py"
+    volumes:
+      - ./spark:/spark:Z
+    depends_on:
+      - kafka1
+      - kafka2
+      - kafka3
+      - postgres
+    networks:
+      - default
