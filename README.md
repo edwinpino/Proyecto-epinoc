@@ -1,26 +1,78 @@
-**Escenario de Implementación
+# Escenario de Implementación
 ![alt text](image-1.png)
 
+Sistema orientado a la recepción de grandes cantidades de facturas (*Invoices*). El almacenamiento de las facturas se asegura 
+almacenándolas directamente en base de datos. El sistema también realizar el cálculo de agregados en streaming basándose en el
+flujo de datos recibido.
 
+El repositorio de implementación deberá ejecutarse en Linux/MacOS.
 
+## Elementos del sistema:
+
+**Producer:** Elemento generador de facturas en base a un script sencillo que se encarga de generar valores aleatorios.
+
+**Haproxy:** El consumo de Kafka se realizar por medio de un proxy que se encarga de balancear los requests entrantes entre los brokers de Kafka
+
+**Kafka Cluster:** 3 brokers de Kafka.
+
+**Kafka Connect:** Consumidor que se encarga de tomar facturas y almacenarlas en base de datos.
+
+**Spark (*Streaming Jobs*):** Job encargado de leer en streaming los datos entrantes, generar agregados y almacenarlos en base de datos.
+
+**Postges:** Base de datos relacional empleada para el almacenamiento de facturas y sus agregados.
+
+**Grafana (*Dashboards*):** Elemento empleado para la visualización de dashboards para el ejercicio.
+
+## Configuración del ambiente
+
+**1. Dar permisos de ejecución a los scrips:**
+
+```
 chmod +x start_service.sh 
-chmod +x producer/producer.sh 
+chmod +x producer/producer.sh
+```
 
-podman network prune -f
+**2. Ejecutar scripts que arranca la solución:**
 
+```
 ./start_service.sh
+```
 
-verificación de la base de datos:
-http://localhost:8081/browser/
-      PGADMIN_DEFAULT_EMAIL: admin@example.com
-      PGADMIN_DEFAULT_PASSWORD: admin123
-Adicionar la base de datos en el pgadmin, máquina "postgres"
-      POSTGRES_DB: demo
-      POSTGRES_USER: demo
-      POSTGRES_PASSWORD: demo 
+**3. Acceso a Dashboards:**
 
-listar topics:
-podman exec -it kafka1 kafka-topics --list --bootstrap-server localhost:9092
+http://localhost:3000/
 
-Producir mensajes por comando:
+usuario: admin
 
+contraseña: admin
+
+Ver dashboards:
+- Total por Cliente (Kafka Invoice Aggregates)
+- Totales por Ciudad (Kafka Stream Aggregates)
+
+**4. Acceso a base de datos:**
+
+http://localhost:8081
+
+usuario: admin@example.com
+
+contraseña: admin123
+
+Crear el servidor para consultar las tablas del esquema:
+
+Server: postgres
+
+Database: demo
+
+User: demo
+
+Password: demo
+
+**5. Verificación del cluster:**
+
+http://localhost:9000
+
+## Solución de errores
+
+- Errores de red: Ejecutar para eliminar redes sin uso: 
+podman network prune -f
