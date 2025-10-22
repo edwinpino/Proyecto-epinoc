@@ -5,7 +5,11 @@ Sistema orientado a la recepción de grandes cantidades de facturas (*Invoices*)
 enviándolas directamente a la base de datos. El sistema también realiza el cálculo de agregados en streaming, basándose en el
 flujo de datos recibido.
 
-El repositorio de implementación deberá ejecutarse en Linux/MacOS.
+## Requerimientos de ejecución:
+
+Linux/MacOS.
+Podman-Podman Desktop.
+
 
 ## Elementos del sistema:
 
