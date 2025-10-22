@@ -1,3 +1,8 @@
+###Escenario de Implementación
+![alt text](image-1.png)
+
+
+
 chmod +x start_service.sh 
 chmod +x producer/producer.sh 
 
