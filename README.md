@@ -2,7 +2,7 @@
 ![alt text](image-1.png)
 
 Sistema orientado a la recepción de grandes cantidades de facturas (*Invoices*). El almacenamiento de las facturas se asegura 
-almacenándolas directamente en base de datos. El sistema también realizar el cálculo de agregados en streaming basándose en el
+enviándolas directamente a la base de datos. El sistema también realiza el cálculo de agregados en streaming, basándose en el
 flujo de datos recibido.
 
 El repositorio de implementación deberá ejecutarse en Linux/MacOS.
@@ -11,7 +11,7 @@ El repositorio de implementación deberá ejecutarse en Linux/MacOS.
 
 **Producer:** Elemento generador de facturas en base a un script sencillo que se encarga de generar valores aleatorios.
 
-**Haproxy:** El consumo de Kafka se realizar por medio de un proxy que se encarga de balancear los requests entrantes entre los brokers de Kafka
+**Haproxy:** El consumo de Kafka se realiza por medio de un proxy que se encarga de balancear los requests entrantes entre los brokers de Kafka
 
 **Kafka Cluster:** 3 brokers de Kafka.
 
