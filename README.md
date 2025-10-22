@@ -80,3 +80,20 @@ http://localhost:9000
 
 - Errores de red: Ejecutar para eliminar redes sin uso: 
 podman network prune -f
+
+## Tomas de pantalla
+
+### Arranque se contenedores
+![alt text](image.png)
+
+### Consulta de Topic
+![alt text](image-2.png)
+
+### Consulta en la base de datos
+![alt text](image-3.png)
+
+### Dashboard
+![alt text](image-4.png)
+
+### Dashboard
+![alt text](image-5.png)
